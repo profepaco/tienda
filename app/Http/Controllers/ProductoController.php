@@ -2,17 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Departamento;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 
 class ProductoController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $productos = Producto::all();
+        return view('productos.index',['productos'=>$productos]);
     }
 
     /**
@@ -20,7 +28,8 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        //
+        $departamentos = Departamento::all();
+        return view('productos.create',['departamentos'=>$departamentos]);
     }
 
     /**

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DepartamentoController;
+use App\Http\Controllers\ProductoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,5 +31,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/departamentos',[DepartamentoController::class,'index'])->name('departamentos.index');
+
+Route::resource('/productos',ProductoController::class);
 
 require __DIR__.'/auth.php';

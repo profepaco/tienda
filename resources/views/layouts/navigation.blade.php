@@ -21,6 +21,11 @@
                         {{ __('Departamentos') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('productos.index')" :active="request()->routeIs('productos.index')">
+                        {{ __('Productos') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
@@ -77,6 +82,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('departamentos.index')" :active="request()->routeIs('departamentos.index')">
                 {{ __('Departamentos') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('productos.index')" :active="request()->routeIs('productos.index')">
+                {{ __('Productos') }}
             </x-responsive-nav-link>
         </div>
 
