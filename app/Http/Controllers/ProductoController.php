@@ -37,7 +37,15 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'nombre'=>'required|max:50',
+            'descripcion'=>'required',
+            'precio'=>'required|decimal:2',
+            'departamento_id'=>'required'
+        ]);
+
+        Producto::create($request->all());
+        return redirect()->route('productos.index')->with('message','Producto creado correctamente');
     }
 
     /**
@@ -53,7 +61,8 @@ class ProductoController extends Controller
      */
     public function edit(Producto $producto)
     {
-        //
+        $departamentos = Departamento::all();
+        return view('productos.edit',['producto'=>$producto, 'departamentos'=>$departamentos]);
     }
 
     /**
@@ -61,7 +70,20 @@ class ProductoController extends Controller
      */
     public function update(Request $request, Producto $producto)
     {
-        //
+        $this->validate($request,[
+            'nombre'=>'required|max:50',
+            'descripcion'=>'required',
+            'precio'=>'required|decimal:2',
+            'departamento_id'=>'required'
+        ]);
+
+        $producto->nombre = $request->nombre;
+        $producto->descripcion = $request->descripcion;
+        $producto->precio = $request->precio;
+        $producto->departamento_id = $request->departamento_id;
+        $producto->save();
+
+        return redirect()->route('productos.index')->with('message','Producto actualizado correctamente');
     }
 
     /**
@@ -69,6 +91,7 @@ class ProductoController extends Controller
      */
     public function destroy(Producto $producto)
     {
-        //
+        $producto->delete();
+        return redirect()->route('productos.index')->witch('message','Producto eliminado correctamente');
     }
 }

@@ -16,6 +16,7 @@
                                 <th class="px-6 py-3 text-sm font-extrabold leading-4 text-gray-500 dark:text-gray-200 border-b border-gray-200 dark:border-indigo-600 bg-gray-200 dark:bg-indigo-800">Nombre</th>
                                 <th class="px-6 py-3 text-sm font-extrabold leading-4 text-gray-500 dark:text-gray-200 border-b border-gray-200 dark:border-indigo-600 bg-gray-200 dark:bg-indigo-800">Precio</th>
                                 <th class="px-6 py-3 text-sm font-extrabold leading-4 text-gray-500 dark:text-gray-200 border-b border-gray-200 dark:border-indigo-600 bg-gray-200 dark:bg-indigo-800">Departamento</th>
+                                <th class="px-6 py-3 text-sm font-extrabold leading-4 text-gray-500 dark:text-gray-200 border-b border-gray-200 dark:border-indigo-600 bg-gray-200 dark:bg-indigo-800">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -25,6 +26,14 @@
                                     <td class="py-4 px-6 whitespace-nowrap border-b border-gray-200 dark:border-indigo-600">{{$producto->nombre}}</td>
                                     <td class="py-4 px-6 whitespace-nowrap border-b border-gray-200 dark:border-indigo-600">{{$producto->precio}}</td>
                                     <td class="py-4 px-6 whitespace-nowrap border-b border-gray-200 dark:border-indigo-600">{{$producto->departamento_id}}</td>
+                                    <td class="py-4 px-6 whitespace-nowrap border-b border-gray-200 dark:border-indigo-600">
+                                        <a href="{{route('productos.edit',['producto'=>$producto])}}" class="inline-flex items-center px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-md font-semibold text-xs text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25 transition ease-in-out duration-150">Modificar</a>
+                                        <form method="POST" action="{{route('productos.destroy',['producto'=>$producto])}}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <x-secondary-button type="submit">Eliminar</x-secondary-button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
